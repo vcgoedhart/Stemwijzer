@@ -19,7 +19,7 @@
     <script src="https://kit.fontawesome.com/a15bfdfa1d.js" crossorigin="anonymous"></script>
 </head>
 
-<body onload="init();">
+<body onload="loadVotes();">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -45,7 +45,7 @@
                 <div id="question-container" class="containers bg-white p-4 mt-4 d-none">
                     <div class="row">
                         <div class="col">
-                            <button onclick="goBack();" class="btn">
+                            <button onclick="back();" class="btn">
                                 Go back
                             </button>
                             <h2 id="questionTitle"></h2>
@@ -55,15 +55,15 @@
                     <div class="row">
                         <div class="col">
                             <div class="button-group">
-                                <button onclick="saveQuestion('pro')" class="btn btn-dark">
+                                <button onclick="save('pro'); next();" class="btn btn-dark">
                                     Eens
                                 </button>
 
-                                <button onclick="saveQuestion(null)" class="btn btn-dark">
+                                <button onclick="save(null); next();" class="btn btn-dark">
                                     Geen van beide
                                 </button>
 
-                                <button onclick="saveQuestion('contra')" class="btn btn-dark">
+                                <button onclick="save('contra'); next();" class="btn btn-dark">
                                     Oneens
                                 </button>
                             </div>
@@ -79,10 +79,34 @@
 
                 <!-- RESULT CONTAINER -->
                 <div id="result-container" class="containers bg-white p-4 mt-4 d-none">
+                    <button onclick="back();" class="btn">
+                        Go back
+                    </button>
                     <div class="d-flex justify-content-center">
-                        <div class="place-container"></div>
-                        <div class="place-container"></div>
-                        <div class="place-container"></div>
+                        <div class="place-container">
+                            <p class="place-container-text text-center m-0 mb-2"></p>
+                            <div class="progress">
+                                <span class="progress_bar">
+                                    <span class="progress_animation"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="place-container">
+                            <p class="place-container-text text-center m-0 mb-2"></p>
+                            <div class="progress">
+                                <span class="progress_bar">
+                                    <span class="progress_animation"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="place-container">
+                            <p class="place-container-text text-center m-0 mb-2"></p>
+                            <div class="progress">
+                                <span class="progress_bar">
+                                    <span class="progress_animation"></span>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -104,4 +128,5 @@
     crossorigin="anonymous"></script>
 
 <!-- MY SCRIPTS-->
-<script src="scripts/script.js"></script>
+<script src="scripts/library.js"></script>
+<script src="scripts/new_script.js"></script>
