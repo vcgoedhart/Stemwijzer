@@ -23,15 +23,30 @@ html, body {
     text-decoration: none;
 }
 
+
+/* PROGRESS BAR */
 .place-container {
-    width: 100px;
-    height: 100px;
-
-    display: inline-block;
-    margin: 0 25px;
-
-    border: 1px solid lightgray;
-    border-radius: 50%;
-
-    position: relative;
+    width: 200px;
+    height: 40px;
+    margin: 0 10px;
 }
+.progress { 
+    height: 12px;
+    position: relative;
+    background: #f3efe6;
+    overflow: hidden;
+}
+.progress span {
+    display: block;
+    height: 100%;
+}
+.progress_animation {
+    background-color: #01B4DC;
+    animation: progressBar 1500ms ease-in-out;
+    animation-fill-mode:both; 
+}
+@keyframes progressBar {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
