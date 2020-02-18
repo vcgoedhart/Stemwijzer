@@ -47,12 +47,15 @@ function saveQuestion(answer){
 }
 
 function setResults(element) {   
-    var votes = []; 
+    var votes = [],
+        totalVotes = 0;
+
     console.log(parties);
     for (var party of parties){
         votes.push(party.votes + ":" + party.name);
+        totalVotes += party.votes;
     }
-    console.log(votes);
+    console.log(totalVotes, votes);
     votes.sort().reverse();
     for (var i = 0; i < 3; i++) {
         var meta = votes[i].split(":");
@@ -60,12 +63,13 @@ function setResults(element) {
         var partyVotes = meta[0];
         var partyName = meta[1];
 
+        var matchPercentage = (partyVotes / totalVotes) * 100;
+
         var p = document.createElement("p");
-        var textNode = document.createTextNode("Partij: " + partyName  + ", Stemmen: " + partyVotes);
+        var textNode = document.createTextNode("Partij: " + partyName + ", Stemmen: " + matchPercentage + "%");
 
         p.appendChild(textNode);
         element.appendChild(p);
     }
-
     console.log(votes);
 }
