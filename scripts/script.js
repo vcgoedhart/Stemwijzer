@@ -9,9 +9,7 @@ showContainer = function (element) {
 }
 
 function init() {
-    for (var party of parties) {
-        party.votes = 0;
-    }
+    for (var party of parties) party.votes = 0;
 }
 
 function start() {
@@ -60,16 +58,22 @@ function setResults(element) {
     for (var i = 0; i < 3; i++) {
         var meta = votes[i].split(":");
 
-        var partyVotes = meta[0];
+        var partyVotes = Number(meta[0]);
         var partyName = meta[1];
 
-        var matchPercentage = (partyVotes / totalVotes) * 100;
-
         var p = document.createElement("p");
-        var textNode = document.createTextNode("Partij: " + partyName + ", Stemmen: " + matchPercentage + "%");
 
-        p.appendChild(textNode);
-        element.appendChild(p);
+        if (totalVotes > 0){
+            var matchPercentage = (partyVotes / totalVotes) * 100;
+            var textNode = document.createTextNode("Partij: " + partyName + ", Stemmen: " + matchPercentage + "%");
+            p.appendChild(textNode);
+            element.appendChild(p);
+        } else {
+            var textNode = document.createTextNode(":(");
+            p.appendChild(textNode);
+            element.appendChild(p);
+            return;
+        }
     }
     console.log(votes);
 }
