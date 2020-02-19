@@ -6,7 +6,7 @@ showContainer = function (element) {
         container.classList.add("d-none");
     }
     element.classList.remove("d-none");
-}
+};
 
 function init() {
     for (var party of parties) party.votes = 0;
@@ -19,20 +19,20 @@ function start() {
 
 function setQuestion() {
     if (subjects[currentQuestion]) {
-         document.getElementById("questionTitle").innerHTML = (currentQuestion + 1) + ". " + subjects[currentQuestion].title;
-         document.getElementById("questionBox").innerHTML = subjects[currentQuestion].statement;
+        document.getElementById("questionTitle").innerHTML = currentQuestion + 1 + ". " + subjects[currentQuestion].title;
+        document.getElementById("questionBox").innerHTML = subjects[currentQuestion].statement;
     } else {
         setResults(document.getElementById("result-container"));
         showContainer(document.getElementById("result-container"));
     }
 }
 
-function saveQuestion(answer){
+function saveQuestion(answer) {
     // Adds votes to the parties with the same answer
-    for (var subjectParty of subjects[currentQuestion].parties){
-        if (subjectParty.position === answer){
+    for (var subjectParty of subjects[currentQuestion].parties) {
+        if (subjectParty.position === answer) {
             for (var party of parties) {
-                if (party.name === subjectParty.name){
+                if (party.name === subjectParty.name) {
                     party.votes++;
                 }
             }
@@ -41,15 +41,15 @@ function saveQuestion(answer){
 
     // Next question
     currentQuestion++;
-    setQuestion()
+    setQuestion();
 }
 
-function setResults(element) {   
+function setResults(element) {
     var votes = [],
         totalVotes = 0;
 
     console.log(parties);
-    for (var party of parties){
+    for (var party of parties) {
         votes.push(party.votes + ":" + party.name);
         totalVotes += party.votes;
     }
@@ -63,7 +63,7 @@ function setResults(element) {
 
         var p = document.createElement("p");
 
-        if (totalVotes > 0){
+        if (totalVotes > 0) {
             var matchPercentage = (partyVotes / totalVotes) * 100;
             var textNode = document.createTextNode("Partij: " + partyName + ", Stemmen: " + matchPercentage + "%");
             p.appendChild(textNode);
