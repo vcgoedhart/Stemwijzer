@@ -1,19 +1,20 @@
-var currentQuestion = 0;
-var votesTotal, votesList;
+function start() {
+    setQuestion(0);
+}
 
-loadVotes = function () {
-    votesTotal = 0;
-    votesList = [];
-
-    for (var party of parties) {
-        party.votes = 0;
+function setWeight() {
+    var checkbox = document.getElementById("checkbox-weight");
+    if (checkbox.checked) {
+        subjects[currentQuestion].weight = true;
+    } else {
+        subjects[currentQuestion].weight = null;
     }
-};
+}
 
-showContainer = function (element) {
-    var containers = document.getElementsByClassName("containers");
-    for (var container of containers) {
-        container.classList.add("d-none");
+function loadCheckbox(value) {
+    if (subjects[value].weight) {
+        document.getElementById("checkbox-weight").checked = true;
+    } else {
+        document.getElementById("checkbox-weight").checked = false;
     }
-    element.classList.remove("d-none");
-};
+}
