@@ -1,132 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <!-- META -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- TITLE -->
-    <title>test</title>
+    <title>Stemwijzer</title>
 
     <!-- LINK -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="style/style.css" />
 
     <!-- SCRIPT-->
-    <script src="scripts/test-data.js"></script>
-    <script src="https://kit.fontawesome.com/a15bfdfa1d.js" crossorigin="anonymous"></script>
-</head>
+    <script
+      src="https://kit.fontawesome.com/a15bfdfa1d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-<body onload="loadVotes();">
+  <body onload="loadVotes();">
     <div class="container">
-        <div class="row">
-            <div class="col">
+      <div class="row">
+        <div class="col">
+          <!-- START CONTAINER -->
+          <div id="stemwijzer-container" class="containers bg-white p-4 mt-4">
+            <h1>
+              <img class="w-50" src="images/svg/logo-stemwijzer.svg" alt="" />
+            </h1>
+            <p class="font-weight-bold">
+              StemWijzer Tweede Kamer 2020
+            </p>
+            <p class="subText font-weight-bold">
+              Test uw politieke voorkeur aan de hand van 30 stellingen
+            </p>
+            <button onclick="start()" class="btn btn-dark">
+              Start
+            </button>
+          </div>
 
-                <!-- START CONTAINER -->
-                <div id="stemwijzer-container" class="containers bg-white p-4 mt-4">
-                    <h1>
-                        <img class="w-50" src="images/svg/logo-stemwijzer.svg" alt="">
-                        <!-- <span class="text-info">Stem</span>Wijzer -->
-                    </h1>
-                    <p class="font-weight-bold">
-                        StemWijzer Tweede Kamer 2020
-                    </p>
-                    <p class="subText font-weight-bold">
-                        Test uw politieke voorkeur aan de hand van 30 stellingen
-                    </p>
-                    <button onclick="start()" class="btn btn-dark">
-                        Start
-                    </button>
-                </div>
-
-                <!-- QUESTION CONTAINER -->
-                <div id="question-container" class="containers bg-white p-4 mt-4 d-none">
-                    <div class="row">
-                        <div class="col">
-                            <button onclick="back();" class="btn">
-                                Go back
-                            </button>
-                            <h2 id="questionTitle"></h2>
-                            <p id="questionBox"></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="button-group">
-                                <button onclick="save('pro'); next();" class="btn btn-dark">
-                                    Eens
-                                </button>
-
-                                <button onclick="save(null); next();" class="btn btn-dark">
-                                    Geen van beide
-                                </button>
-
-                                <button onclick="save('contra'); next();" class="btn btn-dark">
-                                    Oneens
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col text-right text-muted">
-                            <a onclick="saveQuestion(null)" href="#" class="next-question">
-                                Deze vraag overslaan
-                                <i class="fas fa-arrow-circle-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- RESULT CONTAINER -->
-                <div id="result-container" class="containers bg-white p-4 mt-4 d-none">
-                    <button onclick="back();" class="btn">
-                        Go back
-                    </button>
-                    <div class="d-flex justify-content-center">
-                        <div class="place-container">
-                            <p class="place-container-text text-center m-0 mb-2"></p>
-                            <div class="progress">
-                                <span class="progress_bar">
-                                    <span class="progress_animation"></span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="place-container">
-                            <p class="place-container-text text-center m-0 mb-2"></p>
-                            <div class="progress">
-                                <span class="progress_bar">
-                                    <span class="progress_animation"></span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="place-container">
-                            <p class="place-container-text text-center m-0 mb-2"></p>
-                            <div class="progress">
-                                <span class="progress_bar">
-                                    <span class="progress_animation"></span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          <!-- QUESTION CONTAINER -->
+          <div
+            id="question-container"
+            class="containers bg-white p-4 mt-4 d-none"
+          >
+            <div onclick="back();" class="back-button">
+              <i class="fas fa-arrow-left"></i>
             </div>
-        </div>
-    </div>
-</body>
+            <div class="row">
+              <div class="col">
+                <h2 id="questionTitle"></h2>
+                <p id="questionBox"></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="button-group">
+                  <button onclick="save('pro'); next();" class="btn btn-dark">
+                    Eens
+                  </button>
 
+                  <button onclick="save(null); next();" class="btn btn-dark">
+                    Geen van beide
+                  </button>
+
+                  <button
+                    onclick="save('contra'); next();"
+                    class="btn btn-dark"
+                  >
+                    Oneens
+                  </button>
+                </div>
+              </div>
+              <div class="col text-right text-muted">
+                <a onclick="next();" href="#" class="next-question">
+                  Deze vraag overslaan
+                  <i class="fas fa-arrow-circle-right"></i>
+                </a>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col">
+                <div class="from-group">
+                  <input
+                    onclick="setWeight();"
+                    id="checkbox-weight"
+                    type="checkbox"
+                  />
+                  <label class="m-0" for="weight"
+                    >Extra gewicht <a href="#">(?)</a></label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RESULT CONTAINER -->
+          <div
+            id="result-container"
+            class="containers bg-white p-4 mt-4 d-none"
+          >
+            <div onclick="back();" class="back-button">
+              <i class="fas fa-arrow-left"></i>
+            </div>
+            <div class="d-flex justify-content-center">
+              <!--<div id="place-container" class="d-none">
+                <p class="place-container-text text-center m-0 mb-2"></p>
+                <div class="progress">
+                  <span class="progress_bar">
+                    <span class="progress_animation"></span>
+                  </span>
+                </div>
+              </div>
+               <div class="place-container">
+                <p class="place-container-text text-center m-0 mb-2"></p>
+                <div class="progress">
+                  <span class="progress_bar">
+                    <span class="progress_animation"></span>
+                  </span>
+                </div>
+              </div>
+              <div class="place-container">
+                <p class="place-container-text text-center m-0 mb-2"></p>
+                <div class="progress">
+                  <span class="progress_bar">
+                    <span class="progress_animation"></span>
+                  </span>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
 
 <!-- BOOTSTRAP -->
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+  integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+  crossorigin="anonymous"
+></script>
 
 <!-- MY SCRIPTS-->
-<script src="scripts/library.js"></script>
-<script src="scripts/new_script.js"></script>
+<script src="scripts/library/test-data.js"></script>
+<script src="scripts/library/library.js"></script>
+<script src="scripts/question.js"></script>
+<script src="scripts/script.js"></script>
