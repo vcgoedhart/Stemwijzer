@@ -1,52 +1,59 @@
-html, body {
-    background-image: url("../images/tweede_kamer.jpeg");
-    background-size: cover;
-    background-repeat: no-repeat;
+html,
+body {
+  background-image: url("../images/tweede_kamer.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 #stemwijzer-container > .subText {
-    color: #01B4DC;
+  color: #01b4dc;
 }
 
 .containers {
-    padding: 50px 40px;
-    font-size: 18px;
+  font-size: 18px;
 }
 
 .next-question {
-    font-size: 18px;
-    color: lightgrey;
+  font-size: 18px;
+  color: lightgrey;
 }
 
 .next-question:hover {
-    color: darkgrey;
-    text-decoration: none;
+  color: darkgrey;
+  text-decoration: none;
 }
 
+.back-button {
+  cursor: pointer;
+}
 
 /* PROGRESS BAR */
 .place-container {
-    width: 200px;
-    height: 40px;
-    margin: 0 10px;
+  display: block;
+  width: 200px;
+  height: 40px;
+  margin: 0 10px;
 }
-.progress { 
-    height: 12px;
-    position: relative;
-    background: #f3efe6;
-    overflow: hidden;
+.progress {
+  height: 12px;
+  position: relative;
+  background: #f3efe6;
+  overflow: hidden;
 }
 .progress span {
-    display: block;
-    height: 100%;
+  display: block;
+  height: 100%;
 }
 .progress_animation {
-    background-color: #01B4DC;
-    animation: progressBar 1500ms ease-in-out;
-    animation-fill-mode:both; 
+  background-color: #01b4dc;
+  animation: progressBar 1500ms ease-in-out;
+  animation-fill-mode: both;
 }
 @keyframes progressBar {
-    0% { width: 0; }
-    100% { width: 100%; }
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
 }
-
