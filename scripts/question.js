@@ -31,7 +31,7 @@ function save(answer) {
 
 function loadResults(element) {
     showContainer(element);
-    setResults(element);
+    setResults(document.getElementById("result-item-container"));
 }
 
 function setResults(element) {
@@ -54,57 +54,31 @@ function setResults(element) {
     }
 
     for (var party of parties) {
-        votesList.push(party.votes + ":" + party.name);
-        votesTotal += party.votes;
+        var object = {
+            name: party.name,
+            votes: party.votes
+        };
+        votesList.push(object);
     }
 
-    votesList.sort().reverse();
-    console.log(votesList);
-    for (var index in votesList) {
-        console.log(votesList[index]);
+    votesList.sort(function (a, b) { return parseFloat(b.votes) - parseFloat(a.votes); });
 
-        var vote = votesList[index];
-        var meta = vote.split(":");
+    element.innerHTML = "";
+    for (var object of votesList) {
+        var matchPercentage = Math.round((object.votes / subjects.length) * 100);
 
-        var matchPercentage = (meta[0] / votesTotal) * 100;
+        var container = createElement("div", { "id": object.name, "class": "place-container" });
+        var paragraph = createElement("p", { "class": "place-container-text text-center m-0" }, "<strong>" + object.name + "</strong> " + matchPercentage + "%");
+        var progress_container = createElement("div", { "class": "progress" });
+        var progress_bar = createElement("span", { "class": "progress_bar" });
+        var progress_animation = createElement("span", { "class": "progress_animation" });
 
-        var container = $("<div class='place-container' />");
-        var paragraph = $("<p class='place-container-text text-center m-0 mb-2' >" + meta[1] + " " + Math.round(matchPercentage) + "%" + "</p>");
-        var progress = $("<div class='progress' />");
-        var progress_bar = $("<span class='progress_bar'><span class='progress_animation'/></span>");
+        progress_bar.style.width = matchPercentage + "%";
 
-        progress_bar.first()[0].style.width = Math.round(matchPercentage) + "%";
-
-        progress.append(progress_bar);
-        container.append(paragraph);
-        container.append(progress);
-
-        $(element).append(container);
-        // var container = document.createElement("div");
-        // container.classList.add("place-container");
-
-        // var paragraph = document.createElement("p");
-
-        // var container = document.getElementById("place-container");
-        // var clone = container.cloneNode(true);
-        // clone.classList.remove("d-none");
-
-        // var paragraph = document.getElementsByClassName("place-container-text")[index];
-        // var progress_bar = document.getElementsByClassName("progress_bar")[index];
-
-        // paragraph.innerHTML = "<strong>" + meta[1] + "</strong> " + Math.round(matchPercentage) + "%";
-        // progress_bar.style.width = matchPercentage + "%";
-
-        // console.log(element)
-        // element.appendChild(clone);
-
-        // var paragraph = document.getElementsByClassName("place-container-text")[index];
-        // var progress_bar = document.getElementsByClassName("progress_bar")[index];
-
-        // paragraph.innerHTML = "<strong>" + meta[1] + "</strong> " + Math.round(matchPercentage) + "%";
-
-        // progress_bar.style.width = matchPercentage + "%";
-
-        // if (index >= 2) return;
+        progress_bar.appendChild(progress_animation);
+        progress_container.appendChild(progress_bar);
+        container.appendChild(paragraph);
+        container.appendChild(progress_container);
+        element.appendChild(container);
     }
-}
+}                                                                                    
