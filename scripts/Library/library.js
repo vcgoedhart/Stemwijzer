@@ -1,6 +1,8 @@
 var currentQuestion = 0;
 var votesTotal, votesList;
 
+const maxPartySize = 15;
+
 loadVotes = function () {
     votesTotal = 0;
     votesList = [];
@@ -16,4 +18,20 @@ showContainer = function (element) {
         container.classList.add("d-none");
     }
     element.classList.remove("d-none");
+};
+
+createElement = function (tagName, objects, content) {
+    var element = document.createElement(tagName);
+
+    if (objects) {
+        for (var object in objects) {
+            element.setAttribute(object, objects[object]);
+        }
+    }
+
+    if (content) {
+        element.innerHTML = content;
+    }
+
+    return element;
 };
