@@ -11,6 +11,8 @@ body {
 
 .containers {
   font-size: 18px;
+  max-height: 95vh;
+  overflow-y: scroll;
 }
 
 .next-question {
@@ -27,12 +29,26 @@ body {
   cursor: pointer;
 }
 
+.configuration {
+  height: 200px;
+}
+
+.result-container-grid {
+  display: grid;
+  grid-template-columns: 25% auto;
+}
+
+.filter-size,
+.filter-secular {
+  display: none !important;
+}
+
 /* PROGRESS BAR */
 .place-container {
   display: block;
-  width: 200px;
+  width: 300px;
   height: 40px;
-  margin: 0 10px;
+  margin: 12px;
 }
 .progress {
   height: 12px;
