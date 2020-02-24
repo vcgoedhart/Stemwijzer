@@ -52,6 +52,9 @@
             <div onclick="back();" class="back-button">
               <i class="fas fa-arrow-left"></i>
             </div>
+
+            <hr />
+
             <div class="row">
               <div class="col">
                 <h2 id="questionTitle"></h2>
@@ -86,7 +89,7 @@
             </div>
             <div class="row mt-4">
               <div class="col">
-                <div class="from-group">
+                <div class="form-group">
                   <input
                     onclick="setWeight();"
                     id="checkbox-weight"
@@ -108,31 +111,41 @@
             <div onclick="back();" class="back-button">
               <i class="fas fa-arrow-left"></i>
             </div>
-            <div class="d-flex justify-content-center">
-              <!--<div id="place-container" class="d-none">
-                <p class="place-container-text text-center m-0 mb-2"></p>
-                <div class="progress">
-                  <span class="progress_bar">
-                    <span class="progress_animation"></span>
-                  </span>
+
+            <hr />
+
+            <div class="result-container-grid">
+              <div class="configuration">
+                <div class="configuration-menu p-2">
+                  <div class="configuration-title">
+                    <h4>Filters</h4>
+                  </div>
+                  <div class="configuration-item-container">
+                    <div class="configuration-item">
+                      <!-- TODO -->
+                      <input
+                        onclick="filter(this, 'size')"
+                        type="checkbox"
+                        name="stub"
+                      />
+                      <label for="stub">Grote partijen</label>
+                    </div>
+                    <div class="configuration-item">
+                      <!-- TODO -->
+                      <input
+                        onclick="filter(this, 'secular')"
+                        type="checkbox"
+                        name="stub"
+                      />
+                      <label for="stub">Seculiere partijen</label>
+                    </div>
+                  </div>
                 </div>
               </div>
-               <div class="place-container">
-                <p class="place-container-text text-center m-0 mb-2"></p>
-                <div class="progress">
-                  <span class="progress_bar">
-                    <span class="progress_animation"></span>
-                  </span>
-                </div>
+
+              <div class="d-flex justify-content-center">
+                <div id="result-item-container"></div>
               </div>
-              <div class="place-container">
-                <p class="place-container-text text-center m-0 mb-2"></p>
-                <div class="progress">
-                  <span class="progress_bar">
-                    <span class="progress_animation"></span>
-                  </span>
-                </div>
-              </div> -->
             </div>
           </div>
         </div>
@@ -159,7 +172,7 @@
 ></script>
 
 <!-- MY SCRIPTS-->
-<script src="scripts/library/test-data.js"></script>
+<script src="scripts/library/data.js"></script>
 <script src="scripts/library/library.js"></script>
 <script src="scripts/question.js"></script>
 <script src="scripts/script.js"></script>
