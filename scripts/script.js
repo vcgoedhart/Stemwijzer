@@ -18,3 +18,27 @@ function loadCheckbox(value) {
         document.getElementById("checkbox-weight").checked = false;
     }
 }
+
+function filter(element, filterType) {
+    if (element.checked) {
+        for (var party of parties) {
+            switch (filterType) {
+                case "size":
+                    if (party.size < maxPartySize) {
+                        document.getElementById(party.name).classList.add("filter-" + filterType);
+                    }
+                    break;
+                case "secular":
+                    if (party.secular) {
+                        document.getElementById(party.name).classList.add("filter-" + filterType);
+                    }
+                    break;
+            }
+        }
+    } else {
+        var filteredElements = document.getElementsByClassName("filter-" + filterType);
+        while (filteredElements[0]) {
+            filteredElements[0].classList.remove("filter-" + filterType);
+        }
+    }
+}
