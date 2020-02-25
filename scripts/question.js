@@ -1,16 +1,20 @@
+function loadQuestion(value) {
+    setQuestion(value);
+    setCheckbox(value);
+    setOpinions(value);
+}
+
 function setQuestion(value) {
     showContainer(document.getElementById("question-container"));
     document.getElementById("questionTitle").innerHTML = (value + 1) + ". " + subjects[value].title;
     document.getElementById("questionBox").innerHTML = subjects[value].statement;
-
-    loadCheckbox(value);
 }
 
 function next() {
     currentQuestion++;
 
     if (subjects[currentQuestion]) {
-        setQuestion(currentQuestion);
+        loadQuestion(currentQuestion);
     } else {
         loadResults(document.getElementById("result-container"));
     }
@@ -19,7 +23,7 @@ function next() {
 function back() {
     if (currentQuestion > 0) {
         currentQuestion--;
-        setQuestion(currentQuestion);
+        loadQuestion(currentQuestion);
     } else {
         showContainer(document.getElementById("stemwijzer-container"));
     }
@@ -81,4 +85,10 @@ function setResults(element) {
         container.appendChild(progress_container);
         element.appendChild(container);
     }
+
+    $("#result-container").find("input").each(function (i) {
+        if (this.checked) {
+            filter(this, this.getAttribute("name"));
+        }
+    });
 }                                                                                    
