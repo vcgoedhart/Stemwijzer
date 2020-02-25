@@ -101,6 +101,63 @@
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col">
+                <div class="jumbotron p-3 mb-1">
+                  <div class="container">
+                    <a
+                      class="lead m-0 text-info"
+                      data-toggle="collapse"
+                      href="#opinionMenu"
+                      aria-expanded="false"
+                      aria-controls="opinionMenu"
+                    >
+                      Meer...
+                    </a>
+                  </div>
+                  <div
+                    class="collapse multi-collapse container mt-4"
+                    id="opinionMenu"
+                  >
+                    <div class="row justify-content-md-center">
+                      <div class="col">
+                        <p
+                          class="lead font-weight-bold border-bottom border-dark"
+                        >
+                          Eens
+                        </p>
+                        <div
+                          class="opinion-container "
+                          id="opinion-eens-container"
+                        ></div>
+                      </div>
+                      <div class="col">
+                        <p
+                          class="lead font-weight-bold border-bottom border-dark"
+                        >
+                          Geen van beide
+                        </p>
+                        <div
+                          class="opinion-container"
+                          id="opinion-none-container"
+                        ></div>
+                      </div>
+                      <div class="col">
+                        <p
+                          class="lead font-weight-bold border-bottom border-dark"
+                        >
+                          Oneens
+                        </p>
+                        <div
+                          class="opinion-container"
+                          id="opinion-oneens-container"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- RESULT CONTAINER -->
@@ -126,18 +183,18 @@
                       <input
                         onclick="filter(this, 'size')"
                         type="checkbox"
-                        name="stub"
+                        name="size"
                       />
-                      <label for="stub">Grote partijen</label>
+                      <label for="size">Grote partijen</label>
                     </div>
                     <div class="configuration-item">
                       <!-- TODO -->
                       <input
                         onclick="filter(this, 'secular')"
                         type="checkbox"
-                        name="stub"
+                        name="secular"
                       />
-                      <label for="stub">Seculiere partijen</label>
+                      <label for="secular">Seculiere partijen</label>
                     </div>
                   </div>
                 </div>
