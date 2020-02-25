@@ -4,7 +4,7 @@ body {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently */
 
-  background-image: url("../images/tweede_kamer.jpeg");
+  background-image: url("../images/background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
