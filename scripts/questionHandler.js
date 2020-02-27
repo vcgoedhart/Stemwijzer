@@ -1,8 +1,19 @@
+// RESULT PAGE VISUALISER
 resultHandler = function () {
     var _me = this;
 
     this.votes = [];
 
+    // RESET EVERYTHING BACK TO ZERO TO PREVENT ITEMS STACKING UP
+    this.clear = function (element) {
+        _me.votes = [];
+        for (const party of parties) {
+            party.votes = 0;
+        }
+        element.innerHTML = "";
+    };
+
+    // PREPARE THE SORTED ARRAY FOR YOU BEST MATCHED PARTY
     this.prepareResults = function () {
         for (var i = 1; i <= subjects.length; i++) {
             questions[i].setResults();
@@ -18,6 +29,7 @@ resultHandler = function () {
         _me.votes.sort(function (a, b) { return parseFloat(b.votes) - parseFloat(a.votes); });
     };
 
+    // VISUALISE THE RESULT PAGE WITH KNOWN INFORMATION
     this.loadResults = function (element) {
         _me.clear(element);
         _me.prepareResults();
@@ -44,6 +56,7 @@ resultHandler = function () {
         _me.checkFilters();
     };
 
+    // FILTER A PARTY FOR A SPECIFIC KEY ELEMENT
     this.filter = function (element, filterType) {
         if (element.checked) {
             for (var party of parties) {
@@ -68,6 +81,7 @@ resultHandler = function () {
         }
     };
 
+    // CHECK IF THERE IS STILL A FILTER ON AFTER GOING TO A PREVIOUS QUESTION
     this.checkFilters = function () {
         $("#result-container").find("input").each(function (i) {
             if (this.checked) {
@@ -76,20 +90,15 @@ resultHandler = function () {
         });
     };
 
-    this.clear = function (element) {
-        _me.votes = [];
-        for (const party of parties) {
-            party.votes = 0;
-        }
-        element.innerHTML = "";
-    };
 };
 
+// QUESTION HTML VISUALISER
 questionBase = function () {
     resultHandler.call(this);
 
     var _me = this;
 
+    // USED FOR SWITCHING THE CONTAINER
     this.setContainer = function (element) {
         var containers = document.getElementsByClassName("containers");
         for (var container of containers) {
@@ -98,6 +107,7 @@ questionBase = function () {
         element.classList.remove("d-none");
     };
 
+    // LOADS [OPINIONS / STATEMENTS] FOR THE QUESTION FROM EVERY PARTY
     this.setOpinions = function (id) {
         var container = document.getElementsByClassName("opinion-container");
         for (var c of container) {
@@ -135,6 +145,16 @@ questionBase = function () {
         }
     };
 
+    // SETS ASSIGNED CHECKBOX VALUE
+    this.setCheckbox = function (element) {
+        if (_me.important) {
+            element.checked = true;
+        } else {
+            element.checked = false;
+        }
+    }
+
+    // VISUALISES THE QUESTION PAGE / START PAGE / LAST PAGE
     this.render = function () {
         if (_me.id === "stemwijzer") {
             _me.setContainer(document.getElementById(_me.id + "-container"));
@@ -147,12 +167,14 @@ questionBase = function () {
 
         _me.setContainer(document.getElementById("question-container"));
         _me.setOpinions(_me.id);
+        _me.setCheckbox(document.getElementById("checkbox-weight"));
 
         document.getElementById("questionTitle").innerHTML = (_me.id + 1) + ". " + subjects[_me.id].title;
         document.getElementById("questionBox").innerHTML = subjects[_me.id].statement;
     };
 };
 
+// QUESTION OBJECT
 questionHandler = function (id) {
     questionBase.call(this);
 
@@ -160,14 +182,21 @@ questionHandler = function (id) {
 
     this.id = id;
     this.answer = null;
+    this.important = false;
 
+    // STORES RESULTS TO PARTIES VARIABLE
     this.setResults = function () {
         for (const subjectParty of subjects[_me.id].parties) {
             if (subjectParty.position === _me.answer) {
                 var party = parties.filter(function (e) {
                     return e.name === subjectParty.name;
                 });
-                party[0].votes += 1;
+
+                if (_me.important) {
+                    party[0].votes += 2;
+                } else {
+                    party[0].votes += 1;
+                }
             }
         }
     };
