@@ -29,9 +29,5 @@ function filter(element, filterType) {
 }
 
 function setImportant(element) {
-    if (element.checked) {
-        getCurrentQuestion().important = true;
-    } else {
-        getCurrentQuestion().important = false;
-    }
+    getCurrentQuestion().important = element.checked;
 }
