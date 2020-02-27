@@ -1,3 +1,11 @@
+(function __init() {
+    questions.push(new questionHandler("stemwijzer"));
+    for (const i in subjects) {
+        questions.push(new questionHandler(Number(i)));
+    }
+    questions.push(new questionHandler("result"));
+})();
+
 function load() {
     getCurrentQuestion().render();
 }
@@ -20,10 +28,10 @@ function filter(element, filterType) {
     getCurrentQuestion().filter(element, filterType);
 }
 
-(function () {
-    questions.push(new questionHandler("stemwijzer"));
-    for (const i in subjects) {
-        questions.push(new questionHandler(Number(i)));
+function setImportant(element) {
+    if (element.checked) {
+        getCurrentQuestion().important = true;
+    } else {
+        getCurrentQuestion().important = false;
     }
-    questions.push(new questionHandler("result"));
-})();
+}
