@@ -13,7 +13,7 @@ resultHandler = function () {
         element.innerHTML = "";
     };
 
-    // PREPARE THE SORTED ARRAY FOR YOU BEST MATCHED PARTY
+    // PREPARE THE SORTED ARRAY FOR YOUR BEST MATCHED PARTY
     this.prepareResults = function () {
         for (var i = 1; i <= subjects.length; i++) {
             questions[i].setResults();
